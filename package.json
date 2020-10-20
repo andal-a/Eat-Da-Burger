@@ -1,0 +1,26 @@
+{
+  "name": "eat-da-burger",
+  "version": "1.0.0",
+  "description": "A restaurant app for creating a list of desired burgers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andal-a/Eat-Da-Burger.git"
+  },
+  "author": "Amor Andal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andal-a/Eat-Da-Burger/issues"
+  },
+  "homepage": "https://github.com/andal-a/Eat-Da-Burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "handlebars": "^4.7.6",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5"
+  }
+}
