@@ -3,13 +3,19 @@ $(document).ready(function() {
     $(".devourBtn").on("click", function(event) {
         // get ID of burger
         var id = $(this).data("id");
+        var devouredBurger = { 
+            devoured: true,
+            id: id
+        };                               
 
         // Send the PUT request.
         $.ajax("/api/burgers/" + id, {
-            type: "PUT"
+            type: "PUT",
+            data: devouredBurger
         }).then(function() {
-                // Reload the page to get the updated list
-                location.reload();
+            console.log("Yummy yummy in my tummy!", devouredBurger);
+            // Reload the page to get the updated list
+            location.reload();
             }
         );
     });
@@ -35,7 +41,7 @@ $(document).ready(function() {
         event.preventDefault();
 
         // Create object for POST request
-        var burgerName = { name: $("#burgerName").val().trim(), devoured: 0};                               
+        let burgerName = { name: $("#burgerName").val().trim()};                               
 
         // Send the POST request.
         $.ajax("/api/burgers", {

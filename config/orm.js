@@ -3,7 +3,7 @@
 // Dependencies
 var connection = require("./connection.js");
 
-function printQuestionMarks(num) {
+/*function printQuestionMarks(num) {
 	var arr = [];
 
 	for (var i=0; i<num; i++){
@@ -25,38 +25,28 @@ function objToSql(ob){
 		}
 	}
 	return arr.toString();
-}
+}*/
+
 // ORMSelect & selectAll method
 var orm = { 
     selectAll: function(tableInput, callback) {
         //SQL query string to retun all records
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        var queryString = "SELECT * FROM ??";
         //Query String
-        connection.query(queryString, function(err,results) {
-            if(err){
-                throw err;
-            }
-        callback(results);
+        connection.query(queryString, [tableInput], function(err,result) {
+            if(err) throw err;
+        callback(result);
         });
     },
     //insertOne Method to store data in database
-    insertOne: function(table, cols, vals, callback) {
-        var queryString = "INSERT INTO " + table;
-    //SQL Query String - Input Record
-        queryString += "(";
-        queryString += cols.toString();
-        queryString += ")";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ")";
-
+    insertOne: function(tableInput, colOneInput, colTwoInput, colOneValue, colTwoValue, callback) {
+        var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
+    
         console.log(queryString);
         //Query String
-        connection.query(queryString, vals, function(err, results) {
-            if(err) {
-                throw err;
-            }
-            callback(results);
+        connection.query(queryString, [tableInput, colOneInput, colTwoInput, colOneValue, colTwoValue], function(err, result) {
+            if(err) throw err;
+            callback(result);
         });
     },
     //UpdateOne Method to update data in database
@@ -68,13 +58,11 @@ var orm = {
         queryString += " WHERE ";
         queryString += condition;
         //Query String
-        connection.query(queryString, function(err, results) {
-            if(err) {
-                throw err;
-            }
+        connection.query(queryString, function(err, result) {
+            if(err) throw err;
             callback(result);
         });
     }
-    };
+};
 //Export ORM object
 module.exports = orm;

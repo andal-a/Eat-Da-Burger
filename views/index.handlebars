@@ -11,18 +11,15 @@
                 <h2>Hot and Ready to Devour</h2>
                 <ul class="list-group">
                     {{#each burgers}}
-                    {{#unless this.devoured}}
+                    {{#unless devoured}}
                     <li class="list-group-item">
-                    <div class="input-group">
-                        <p class="lead">{{this.burger_name}}</p>
-                        <span class="input-group-btn">
-                            <!--Burgers from the database populate here-->
-                            <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-                                <input type="hidden" name="devoured" value="true">
-                                <button class="btn btn-default btn-lg" data-id="{{id}}" id="devourBtn">Devour it!</button>
-                            </form>
-                        </span>
-                    </div>
+                        <div class="input-group">
+                            <p class="lead">{{burger_name}}</p>
+                            <span class="input-group-btn">
+                                <!--Burgers from the database populate here-->
+                                <button class="devourBtn btn btn-default btn-lg" data-id="{{id}}" id="devourBtn">Devour it!</button>
+                            </span>
+                        </div>
                     </li>
                     {{/unless}}
                     {{/each}}
@@ -34,9 +31,9 @@
                 <h2>Devoured Burgers</h2>
                 <ul class="list-group">
                     {{#each burgers}}
-                    {{#if this.devoured}}
+                    {{#if devoured}}
                     <li class="list-group-item">
-                        <p class="lead">{{this.burger_name}}</p>
+                        <p class="lead">{{burger_name}}</p>
                         <button class="deleteBtn btn btn-danger btn-lg float-right" data-id="{{id}}">DELETE</button>
                     </li>
                     {{/if}}
@@ -45,15 +42,24 @@
 		    </div>
         </div>
         <!--Submit form for adding new burgers to the db-->
-        <div class="col-md-10 col-md-offset-1">
-            <p class="textbox">Add burger & click submit</p>
-            <form class="create-update-form" action="burgers/create" method="POST">
-            <div class="form-group">
-                <textarea class="form-control input-lg" type="text" name="burger_name" row="3"></textarea>
-            </div>
-            <button class="btn btn-default btn-lg" type="submit">Submit</button>
+        <div class="row mt-4">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h3 align="center">Add a Burger</h3>
+            <form class="create-form">
+                <div class="form-group mx-auto" align="center">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Burger name" aria-label="Recipient's username" aria-describedby="basic-addon2" id="burgerName">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">ADD</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
     </div>
     <!-- Footer -->
     <footer>
