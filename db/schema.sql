@@ -12,4 +12,3 @@ CREATE TABLE `burgers` (
 );
 SELECT * FROM burgers;
 
-https://git.heroku.com/placeholder-project2.git
